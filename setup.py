@@ -8,6 +8,7 @@ setup(
     version="0.0.1",
     description="Minimalistic django cms",
     url="https://github.com/noxan/django-mini-cms",
+    license='BSD License',
     install_requires=[
         'Django>=1.4',
     ],
