@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(
@@ -11,4 +11,5 @@ setup(
     install_requires=[
         'Django>=1.4',
     ],
+    packages=find_packages(),
 )
