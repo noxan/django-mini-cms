@@ -16,17 +16,17 @@ class PageDetailView(DetailView):
         if queryset is None:
             queryset = self.get_queryset()
 
-        slug = self.kwargs.get(self.slug_url_kwarg, None)
+        slug_full = self.kwargs.get(self.slug_url_kwarg, None)
         slug_field = self.get_slug_field()
 
-        slug_parts = slug.split(PARENT_SEPARATOR)
+        slug = slug_full.split(PARENT_SEPARATOR)[-1]
 
         try:
-            obj = queryset.get(**{slug_field: slug_parts[-1]})
+            obj = queryset.get(**{slug_field: slug})
         except ObjectDoesNotExist:
             raise Http404(ERROR404_MESSAGE)
 
-        if not obj.get_full_slug() == slug:
+        if not obj.get_full_slug() == slug_full:
             raise Http404(ERROR404_MESSAGE)
 
         return obj
