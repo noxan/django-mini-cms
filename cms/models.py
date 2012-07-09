@@ -9,6 +9,7 @@ class Page(models.Model):
     parent = models.ForeignKey('self', blank=True, null=True, limit_choices_to={})
     content = models.TextField(blank=True)
     public = models.BooleanField(default=True)
+    is_template = models.BooleanField(default=False)
 
     def get_full_slug(self):
         slug = self.slug
