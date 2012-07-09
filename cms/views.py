@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic import DetailView
 
 from models import Page
+from settings import PARENT_SEPARATOR
 
 
 ERROR404_MESSAGE = ("No %(verbose_name)s found matching the query") % {'verbose_name': Page._meta.verbose_name}
@@ -18,7 +19,7 @@ class PageDetailView(DetailView):
         slug = self.kwargs.get(self.slug_url_kwarg, None)
         slug_field = self.get_slug_field()
 
-        slug_parts = slug.split('/')
+        slug_parts = slug.split(PARENT_SEPARATOR)
 
         try:
             obj = queryset.get(**{slug_field: slug_parts[-1]})
