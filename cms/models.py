@@ -15,7 +15,7 @@ class Page(models.Model):
         if self.parent != None:
             parent = self.parent
             while parent is not None:
-                slug = slug + PARENT_SEPARATOR + parent.slug
+                slug = parent.slug + PARENT_SEPARATOR + slug
                 parent = parent.parent
         return slug
 
