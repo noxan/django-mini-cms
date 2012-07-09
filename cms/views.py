@@ -26,12 +26,7 @@ class PageDetailView(DetailView):
         except ObjectDoesNotExist:
             raise Http404(ERROR404_MESSAGE)
 
-        if len(slug_parts) == 1:
-            if obj.parent is not None:
-                raise Http404(ERROR404_MESSAGE)
-        else:
-            for i in reversed(range(len(slug_parts)-1)):
-                if not (obj.parent.slug == slug_parts[i]):
-                    raise Http404(ERROR404_MESSAGE)
+        if not obj.get_full_slug() == slug:
+            raise Http404(ERROR404_MESSAGE)
 
         return obj
