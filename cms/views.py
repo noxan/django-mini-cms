@@ -1,5 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
+from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic import DetailView
 
@@ -11,6 +12,12 @@ ERROR404_MESSAGE = ("No %(verbose_name)s found matching the query") % {'verbose_
 
 class PageDetailView(DetailView):
     model = Page
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        context['page'].display = self.object.render(RequestContext(request))
+        return self.render_to_response(context)
 
     def get_object(self, queryset=None):
         if queryset is None:
