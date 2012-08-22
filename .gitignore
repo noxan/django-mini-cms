@@ -3,4 +3,6 @@
 *.pyc
 *.swp
 *.swo
+*.egg-info
 local_settings.py
+/dist/
