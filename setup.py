@@ -1,11 +1,13 @@
 from setuptools import setup, find_packages
 
+import cms
+
 
 setup(
     author="noxan",
     author_email="noxan@redmoonstudios.de",
     name="django-mini-cms",
-    version="0.0.1",
+    version=cms.__version__,
     description="Minimalistic django cms",
     url="https://github.com/noxan/django-mini-cms",
     license='BSD License',
