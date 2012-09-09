@@ -7,6 +7,7 @@ from settings import PARENT_SEPARATOR
 class Page(models.Model):
     headline = models.CharField(max_length=255)
     slug = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=512, blank=True)
     parent = models.ForeignKey('self', blank=True, null=True, limit_choices_to={})
     content = models.TextField(blank=True)
     public = models.BooleanField(default=True)
